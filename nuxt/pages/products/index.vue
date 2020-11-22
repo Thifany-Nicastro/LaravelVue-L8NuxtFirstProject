@@ -1,44 +1,51 @@
 <template>
-	<div class="container">
-		<div class="row">
-			<div class="col">
-				<div class="card">
-					<div class="card-header">Products</div>
-
-					<div class="card-body">
-						<table class="table">
-							<thead>
-								<tr>
-									<th scope="col">#</th>
-									<th scope="col">First</th>
-									<th scope="col">Last</th>
-									<th scope="col">Handle</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<th scope="row">1</th>
-									<td>Mark</td>
-									<td>Otto</td>
-									<td>@mdo</td>
-								</tr>
-								<tr>
-									<th scope="row">2</th>
-									<td>Jacob</td>
-									<td>Thornton</td>
-									<td>@fat</td>
-								</tr>
-								<tr>
-									<th scope="row">3</th>
-									<td>Larry</td>
-									<td>the Bird</td>
-									<td>@twitter</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<b-container>
+		<b-row>
+			<b-col> 
+                <b-card>
+                    <template #header>
+                        <h6 class="mb-0">Header Slot</h6>
+                    </template>
+                    <b-card-body>
+                        <b-card-title>Card Title</b-card-title>
+                        <b-card-sub-title class="mb-2">Card Sub Title</b-card-sub-title>
+                        <b-card-text>
+                            Some quick example text to build on the card title and make up the bulk of the card's
+                            content.
+                        </b-card-text>
+                        <b-table striped hover responsive :items="items"></b-table>
+                    </b-card-body>
+                    <template #footer>
+                        <em>Footer Slot</em>
+                    </template>
+                </b-card>
+            </b-col>
+		</b-row>
+	</b-container>
 </template>
+
+<script>
+    export default {
+        data() {
+            return {
+                items: []
+            }
+        },
+
+        // async fetch() {
+        //     // this.items = await fetch(
+        //     //     'https://jsonplaceholder.typicode.com/posts'
+        //     // ).then(res => res.json())
+        
+        //     let { data } = await this.$axios.get("https://jsonplaceholder.typicode.com/posts");
+        //     this.items = data;
+        // }
+
+        async asyncData({ $axios }) {
+            let self = this
+            let { data } = await $axios.get("https://jsonplaceholder.typicode.com/posts")
+            console.log(data)
+            return { items: data };
+        },
+    }
+</script>
