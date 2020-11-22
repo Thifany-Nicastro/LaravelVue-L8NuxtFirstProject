@@ -36,15 +36,13 @@
         //     // this.items = await fetch(
         //     //     'https://jsonplaceholder.typicode.com/posts'
         //     // ).then(res => res.json())
-        
+
         //     let { data } = await this.$axios.get("https://jsonplaceholder.typicode.com/posts");
         //     this.items = data;
         // }
 
         async asyncData({ $axios }) {
-            let self = this
             let { data } = await $axios.get("https://jsonplaceholder.typicode.com/posts")
-            console.log(data)
             return { items: data };
         },
     }

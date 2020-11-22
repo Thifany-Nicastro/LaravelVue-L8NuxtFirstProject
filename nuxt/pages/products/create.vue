@@ -39,7 +39,8 @@
 
         methods: {
             onSubmit () {
-                console.log(this.post);
+                this.$axios.post('https://jsonplaceholder.typicode.com/posts', this.post).then((response) => console.log(response))
+                console.log(this.post)
             },
 
             onReset () {
